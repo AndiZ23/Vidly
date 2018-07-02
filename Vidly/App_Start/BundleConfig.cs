@@ -1,5 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
+// Define various bundles of client side assets (js, css)
+// combine and compress multiple js or css files into a bundle, to reduce the number of http request => faster page load.
 
 namespace Vidly
 {
@@ -23,7 +25,7 @@ namespace Vidly
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-lumen.css",
                       "~/Content/site.css"));
         }
     }
