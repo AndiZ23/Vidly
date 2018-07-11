@@ -31,6 +31,34 @@ namespace Vidly.Controllers
                 // Output: redirect to Home page, with page=1&sortBy=name on the url (like GET data)
 
         }
+
+        public ActionResult Edit(int id)
+        {
+            /*
+             * pass parameter through url (.../movies/edit/1, the "1" is assigned to id 
+             * because in RouteConfig's MapRoute, we configured url: {controller}/{action}/{id}
+             */
+            return Content("id=" + id); 
+        }
+
+        // /movies
+        public ActionResult Index(int? pageIndex, string sortBy)
+        {
+            if (!pageIndex.HasValue) // on default, showing page 1
+                pageIndex = 1;
+
+            if (string.IsNullOrWhiteSpace(sortBy)) // on default, sort by "name"
+                sortBy = "Name";
+
+            return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));  //{0} the first parameter, {1} the second parameter
+        }
+
+        // apply a route attribute here; rhe colon is for adding constraints for the attr
+        [Route("movies/released/{year}/{month:regex(\\d{2}):range(1,12)}")]
+        public ActionResult ByReleaseDate(int year, int month)
+        {
+            return Content(year + "/" + month);
+        }
     }
 }
 // ActionResult:
