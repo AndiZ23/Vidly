@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models; // associates the Movie.cs model to this controller
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -14,21 +15,34 @@ namespace Vidly.Controllers
         // Index() is the default controller method that returns ActionResult
         //      we can change the name to any (e.g. Random) -> GET: Movies/Random
         {
-            var movie = new Movie() { Name = "Shrek!" }; 
+            var movie = new Movie() { Name = "Shrek!" };
             // the Movie class is the model, this is to create a new instance of the class.
 
-            return View(movie); // pass the instance/data to the view
-            // the controller passes data (that formed by the Model -- instance) to the View, 
-            //  which has to be the same name as this method, aka. Random.cshtml.
+
+            var customers = new List<Customer>
+            {
+                new Customer { Name = "Customer 1"},
+                new Customer { Name = "Customer 2"}
+            };
+
+            var viewModel = new RandomMovieViewModel
+            {
+                Movie = movie,
+                Customers = customers
+            };
+
+            return View(viewModel); // pass the instance/data to the view
+                                // the controller passes data (that formed by the Model -- instance) to the View, 
+                                //  which has to be the same name as this method, aka. Random.cshtml.
 
             /*  Examples of different ActionResults   */
             //return Content("Hello World!");   // empty page with the plain text on it.
             //return HttpNotFound();    // 404 page
             //return new EmptyResult(); // a empty blank page
             //return RedirectToAction("Index","Home", new {page = 1. sortBy="name"});
-                // parameters: 1st. the name of the action; 2nd. destination page of the redirction; 
-                //             3rd. the data passing during the redirect. 
-                // Output: redirect to Home page, with page=1&sortBy=name on the url (like GET data)
+            // parameters: 1st. the name of the action; 2nd. destination page of the redirction; 
+            //             3rd. the data passing during the redirect. 
+            // Output: redirect to Home page, with page=1&sortBy=name on the url (like GET data)
 
         }
 
