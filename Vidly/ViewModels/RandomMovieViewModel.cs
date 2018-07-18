@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Vidly.Models;
 
-namespace Vidly.ViewModels
+namespace Vidly.ViewModels // A viewmodel can have multiple models as instance, so that a view can use them all. 
 {
     public class RandomMovieViewModel
     {
