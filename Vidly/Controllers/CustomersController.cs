@@ -10,17 +10,31 @@ namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
+        private ApplicationDbContext _context;  // for getting data from the database
+
+        public CustomersController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Customers
         public ViewResult Index()
         {
-            var customers = GetCustomers();
+            var customers = _context.Customers;  // get all customer from the db Customers table
+                                                // Entity Framework will not execute the query when _context.Customer is executed,
+                                                // instead, it will called when the customers object is iterated (e.g. in the View(customers), or _context.Customers.ToList()). 
 
             return View(customers);
         }
 
         public ActionResult Details(int id)
         {
-            var customer = GetCustomers().SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 return HttpNotFound();
@@ -28,13 +42,5 @@ namespace Vidly.Controllers
             return View(customer);
         }
 
-        private IEnumerable<Customer> GetCustomers()
-        {
-            return new List<Customer>
-            {
-                new Customer { Id = 1, Name = "John Smith"},
-                new Customer { Id = 2, Name = "Mary Williams"}
-            };
-        }
     }
 }

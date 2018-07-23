@@ -9,6 +9,7 @@ namespace Vidly.Models
     public class Customer
     {
         public int Id { get; set; }
+
         [Required]  // becomes non-nullable in the database.
         [StringLength(255)]
         public string Name { get; set; }  // string will be nullable and max length in the database on default; using the [] to re-write it.
