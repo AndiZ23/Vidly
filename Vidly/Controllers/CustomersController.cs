@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;  // to use Include() for eager loading
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,7 +26,7 @@ namespace Vidly.Controllers
         // GET: Customers
         public ViewResult Index()
         {
-            var customers = _context.Customers;  // get all customer from the db Customers table
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();  // get all customer from the db Customers table
                                                 // Entity Framework will not execute the query when _context.Customer is executed,
                                                 // instead, it will called when the customers object is iterated (e.g. in the View(customers), or _context.Customers.ToList()). 
 
