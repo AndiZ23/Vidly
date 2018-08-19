@@ -231,9 +231,38 @@
     <Compile Include="Migrations\201808160408415_populateMembershipType.Designer.cs">
       <DependentUpon>201808160408415_populateMembershipType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808190007214_AddDOBToCustomer.cs" />
+    <Compile Include="Migrations\201808190007214_AddDOBToCustomer.Designer.cs">
+      <DependentUpon>201808190007214_AddDOBToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808190040469_InitialModel1.cs" />
+    <Compile Include="Migrations\201808190040469_InitialModel1.Designer.cs">
+      <DependentUpon>201808190040469_InitialModel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808190052150_Movie.cs" />
+    <Compile Include="Migrations\201808190052150_Movie.Designer.cs">
+      <DependentUpon>201808190052150_Movie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808190122122_AddGenre.cs" />
+    <Compile Include="Migrations\201808190122122_AddGenre.Designer.cs">
+      <DependentUpon>201808190122122_AddGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808190123562_AddDatesToMovie.cs" />
+    <Compile Include="Migrations\201808190123562_AddDatesToMovie.Designer.cs">
+      <DependentUpon>201808190123562_AddDatesToMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808190125315_AddStockNumToMovie.cs" />
+    <Compile Include="Migrations\201808190125315_AddStockNumToMovie.Designer.cs">
+      <DependentUpon>201808190125315_AddStockNumToMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808190133062_populateGenre.cs" />
+    <Compile Include="Migrations\201808190133062_populateGenre.Designer.cs">
+      <DependentUpon>201808190133062_populateGenre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -307,6 +336,7 @@
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -345,6 +375,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808160408415_populateMembershipType.resx">
       <DependentUpon>201808160408415_populateMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808190007214_AddDOBToCustomer.resx">
+      <DependentUpon>201808190007214_AddDOBToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808190040469_InitialModel1.resx">
+      <DependentUpon>201808190040469_InitialModel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808190052150_Movie.resx">
+      <DependentUpon>201808190052150_Movie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808190122122_AddGenre.resx">
+      <DependentUpon>201808190122122_AddGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808190123562_AddDatesToMovie.resx">
+      <DependentUpon>201808190123562_AddDatesToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808190125315_AddStockNumToMovie.resx">
+      <DependentUpon>201808190125315_AddStockNumToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808190133062_populateGenre.resx">
+      <DependentUpon>201808190133062_populateGenre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
