@@ -1,5 +1,5 @@
 ﻿
-@model Vidly.Models.Customer
+@model Vidly.ViewModels.NewCustomerViewModel
 @{
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,18 +10,25 @@
 @using (Html.BeginForm("Create", "Customer"))
 {
     <div class="form-group">
-        @Html.LabelFor(m => m.Name)
-        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Customer.Name)
+        @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.DOB)
-        @Html.TextBoxFor(m => m.DOB, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Customer.DOB)
+        @Html.TextBoxFor(m => m.Customer.DOB, new { @class = "form-control" })
     </div>
 
     <div class="checkbox">
         <label>
-            @Html.CheckBoxFor(m => m.IsSubscribedToNewsLetter) Subscribed to Newsletter?
+            @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsLetter) Subscribed to Newsletter?
         </label>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.MembershipType)
+        @Html.DropDownListFor(m => m.Customer.MembershipType, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+        @* Form a dropdown list with reference data: (1. model's property; 2. selectlist with the IEnumerable property, data prop for the value, data prop for the txt; 
+            4. first option's text; 5. css class and other html attr*@
     </div>
 }

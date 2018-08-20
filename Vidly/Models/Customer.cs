@@ -13,9 +13,14 @@ namespace Vidly.Models
         [Required]  // becomes non-nullable in the database.
         [StringLength(255)]
         public string Name { get; set; }  // string will be nullable and max length in the database on default; using the [] to re-write it.
+
         public bool IsSubscribedToNewsLetter { get; set; }
+
         public MembershipType MembershipType { get; set; }
+
+        [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; } // foreign key to the MembershipType
+
         [Display(Name = "Date of Birth")]
         public DateTime? DOB { get; set; }
     }
