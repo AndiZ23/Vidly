@@ -23,16 +23,6 @@ namespace Vidly.Controllers
             _context.Dispose();
         }
 
-        public ActionResult New()
-        {
-            var membershipTypes = _context.MembershipTypes.ToList();
-            var viewModel = new NewCustomerViewModel
-            {
-                MembershipTypes = membershipTypes
-            };
-            return View(viewModel);
-        }
-
         // GET: Customers
         public ViewResult Index()
         {
@@ -51,6 +41,22 @@ namespace Vidly.Controllers
                 return HttpNotFound();
 
             return View(customer);
+        }
+
+        public ActionResult New()
+        {
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(NewCustomerViewModel viewModel)
+        {
+            return View();
         }
 
     }
