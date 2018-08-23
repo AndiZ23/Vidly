@@ -27,7 +27,7 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.MembershipType)
-        @Html.DropDownListFor(m => m.Customer.MembershipType, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
         @* Form a dropdown list with reference data: (1. model's property; 2. selectlist with the IEnumerable property, data prop for the value, data prop for the txt; 
             4. first option's text; 5. css class and other html attr*@
     </div>
