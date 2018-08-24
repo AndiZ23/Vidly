@@ -46,28 +46,35 @@ namespace Vidly.Controllers
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
-            var viewModel = new NewCustomerViewModel
+            var viewModel = new CustomerEditViewModel
             {
                 MembershipTypes = membershipTypes
             };
-            return View(viewModel);
+            return View("CustomerForm",viewModel);
         }
 
         [HttpPost]
         public ActionResult Create(Customer customer/*NewCustomerViewModel viewmodel*/)  //model can bind to the customer in viewmodel
         {
             // save form inputs into db
-            //var customer = new Customer()
-            //{
-            //    Name = viewmodel.Customer.Name,
-            //    DOB = viewmodel.Customer.DOB,
-            //    MembershipType = viewmodel.Customer.MembershipType,
-            //    IsSubscribedToNewsLetter = viewmodel.Customer.IsSubscribedToNewsLetter,
-            //    MembershipTypeId = viewmodel.Customer.MembershipTypeId
-            //};
             _context.Customers.Add(customer);  // cache the object
             _context.SaveChanges();  // save to db
             return RedirectToAction("Index", "Customers");  // back to the Customers/Index page.
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            if (customer == null)
+                return HttpNotFound();
+
+            var viewModel = new CustomerEditViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+
+            return View("CustomerForm", viewModel);
         }
 
     }

@@ -23,7 +23,7 @@ else
             @foreach (var customer in Model)
             {
                 <tr>
-                    <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
+                    <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
                     <td>@customer.MembershipType.Name</td> @* directly using this will cause null pointer exception because can't get model's related objects. 
                         To solve this problem, needs "Eager loading". => use .Include(c => c.MembershipType) to the customers in controller index *@
                 </tr>
