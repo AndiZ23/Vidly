@@ -6,6 +6,7 @@
 }
 
 <h2>Customers</h2>
+@Html.ActionLink("New Customer", "New", "Customer", new { @class="pull-right"})
 @if (!Model.Any())
 {
     <p>We don't have any customers yet.</p>

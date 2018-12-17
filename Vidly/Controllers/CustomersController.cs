@@ -54,10 +54,20 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Customer customer/*NewCustomerViewModel viewmodel*/)  //model can bind to the customer in viewmodel
+        public ActionResult Save(Customer customer/*NewCustomerViewModel viewmodel*/)  //model can bind to the customer in viewmodel
         {
-            // save form inputs into db
-            _context.Customers.Add(customer);  // cache the object
+            if(customer.Id == 0) { // a new customer
+                // save form inputs into db
+                _context.Customers.Add(customer);  // cache the object into the memory
+            }
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+                customerInDb.Name = customer.Name;
+                customerInDb.DOB = customer.DOB;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+            }
             _context.SaveChanges();  // save to db
             return RedirectToAction("Index", "Customers");  // back to the Customers/Index page.
         }
