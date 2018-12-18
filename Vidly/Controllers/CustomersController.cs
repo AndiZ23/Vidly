@@ -45,7 +45,7 @@ namespace Vidly.Controllers
 
         public ActionResult New()
         {
-            var membershipTypes = _context.MembershipTypes.ToList();
+            var membershipTypes = _context.MembershipTypes.ToList(); // because this uses db reference data, so need to retrieve from db and use a viewmodel.
             var viewModel = new CustomerEditViewModel
             {
                 MembershipTypes = membershipTypes
