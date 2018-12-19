@@ -40,9 +40,33 @@ namespace Vidly.Controllers
             return View("MovieForm", viewModel);
         }
 
-        public ActionResult Create(Movie movie)
+        public ActionResult Edit(int id)
         {
-            _context.Movies.Add(movie);
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+            if (movie == null)
+                return HttpNotFound();
+
+            var viewmodel = new MovieEditViewModel
+            {
+                Genres = _context.Genres.ToList(),
+                Movie = movie
+            };
+            return View("MovieForm", viewmodel);
+        }
+
+        public ActionResult Save(Movie movie)
+        {
+            if (movie.Id == 0)
+                _context.Movies.Add(movie);
+            else
+            {
+                var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
+                movieInDb.Name = movie.Name;
+                movieInDb.GenreId = movie.GenreId;
+                movieInDb.ReleaseDate = movieInDb.ReleaseDate;
+                movieInDb.DateAdded = movieInDb.DateAdded;
+                movieInDb.NumInStock = movieInDb.NumInStock;
+            }
             _context.SaveChanges();
             return RedirectToAction("Index", "Movies");
         }
@@ -94,14 +118,14 @@ namespace Vidly.Controllers
 
         }
 
-        public ActionResult Edit(int id)
-        {
-            /*
-             * pass parameter through url (.../movies/edit/1, the "1" is assigned to id 
-             * because in RouteConfig's MapRoute, we configured url: {controller}/{action}/{id}
-             */
-            return Content("id=" + id); 
-        }
+        //public ActionResult Edit(int id)
+        //{
+        //    /*
+        //     * pass parameter through url (.../movies/edit/1, the "1" is assigned to id 
+        //     * because in RouteConfig's MapRoute, we configured url: {controller}/{action}/{id}
+        //     */
+        //    return Content("id=" + id); 
+        //}
 
         // /movies
         //public ActionResult Index(int? pageIndex, string sortBy)
