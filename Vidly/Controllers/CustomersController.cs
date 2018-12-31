@@ -56,6 +56,16 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer/*NewCustomerViewModel viewmodel*/)  //model can bind to the customer in viewmodel
         {
+            if (!ModelState.IsValid) // add validation: check if all data match with the data annotation in the model.
+            {
+                var viewModel = new CustomerEditViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm", viewModel); // if not passed, return back to customer form with the input data, (which also triggers and shows all the form error messages.
+            }
+
             if(customer.Id == 0) { // a new customer
                 // save form inputs into db
                 _context.Customers.Add(customer);  // cache the object into the memory

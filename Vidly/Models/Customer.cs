@@ -19,7 +19,7 @@ namespace Vidly.Models
         public MembershipType MembershipType { get; set; }
 
         [Display(Name = "Membership Type")]
-        public byte MembershipTypeId { get; set; } // foreign key to the MembershipType
+        public byte MembershipTypeId { get; set; } // foreign key to the MembershipType; *byte is not nullable, so it's required*
 
         [Display(Name = "Date of Birth")]
         public DateTime? DOB { get; set; }
