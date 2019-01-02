@@ -9,23 +9,24 @@
 
 @using (Html.BeginForm("Save", "Customers"))
 {
+    @* show error messages list; true - exclude propoerty errors (hide the list as they've been shown under each field; only shows the string passed as the 2nd param *@
+    @Html.ValidationSummary(true, "Please fix the following errors.")
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Customer.Name)
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.DOB)
-        @Html.TextBoxFor(m => m.Customer.DOB, "{0:d MM yyyy}", new { @class = "form-control" })
-    </div>
-
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.MembershipTypeId)
         @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
         @* Form a dropdown list with reference data: (1. model's property; 2. selectlist with the IEnumerable property, data prop for the value, data prop for the txt;
             4. first option's text; 5. css class and other html attr*@
         @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.DOB)
+        @Html.TextBoxFor(m => m.Customer.DOB, "{0:d MM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.DOB)
     </div>
     <div class="checkbox">
         <label>

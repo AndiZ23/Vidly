@@ -48,6 +48,7 @@ namespace Vidly.Controllers
             var membershipTypes = _context.MembershipTypes.ToList(); // because this uses db reference data, so need to retrieve from db and use a viewmodel.
             var viewModel = new CustomerEditViewModel
             {
+                Customer = new Customer(), // default id is 0
                 MembershipTypes = membershipTypes
             };
             return View("CustomerForm",viewModel);

@@ -10,7 +10,7 @@ namespace Vidly.Models
     {
         public int Id { get; set; }
 
-        [Required]  // becomes non-nullable in the database.
+        [Required(ErrorMessage = "Please enter customer's name.")]  // having "Required" here, Name becomes non-nullable in the database.
         [StringLength(255)]
         public string Name { get; set; }  // string will be nullable and max length in the database on default; using the [] to re-write it.
 
@@ -22,6 +22,7 @@ namespace Vidly.Models
         public byte MembershipTypeId { get; set; } // foreign key to the MembershipType; *byte is not nullable, so it's required*
 
         [Display(Name = "Date of Birth")]
+        [Min18YearsIfAMember]
         public DateTime? DOB { get; set; }
     }
 }
